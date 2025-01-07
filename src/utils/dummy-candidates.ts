@@ -1,0 +1,272 @@
+import { Candidate } from '@/types/candidate';
+
+export const dummyCandidates: Candidate[] = [
+  {
+    id: '1',
+    name: 'John Smith',
+    email: 'john.smith@example.com',
+    phone: '+1 (555) 123-4567',
+    status: 'active',
+    role: 'Frontend Developer',
+    experience: 5,
+    skills: ['React', 'TypeScript', 'Next.js'],
+    location: 'New York, USA',
+    createdAt: new Date('2024-01-15'),
+    updatedAt: new Date('2024-03-10')
+  },
+  {
+    id: '2',
+    name: 'Sarah Johnson',
+    email: 'sarah.j@example.com',
+    phone: '+1 (555) 234-5678',
+    status: 'active',
+    role: 'Backend Developer',
+    experience: 7,
+    skills: ['Node.js', 'Python', 'PostgreSQL'],
+    location: 'San Francisco, USA',
+    createdAt: new Date('2024-01-20'),
+    updatedAt: new Date('2024-03-12')
+  },
+  {
+    id: '3',
+    name: 'Michael Chen',
+    email: 'michael.c@example.com',
+    phone: '+1 (555) 345-6789',
+    status: 'pending',
+    role: 'Full Stack Developer',
+    experience: 4,
+    skills: ['React', 'Node.js', 'MongoDB'],
+    location: 'Seattle, USA',
+    createdAt: new Date('2024-02-01'),
+    updatedAt: new Date('2024-03-15')
+  },
+  {
+    id: '4',
+    name: 'Emma Wilson',
+    email: 'emma.w@example.com',
+    phone: '+1 (555) 456-7890',
+    status: 'active',
+    role: 'UI/UX Designer',
+    experience: 6,
+    skills: ['Figma', 'Adobe XD', 'Sketch'],
+    location: 'London, UK',
+    createdAt: new Date('2024-02-05'),
+    updatedAt: new Date('2024-03-16')
+  },
+  {
+    id: '5',
+    name: 'David Kim',
+    email: 'david.k@example.com',
+    phone: '+1 (555) 567-8901',
+    status: 'inactive',
+    role: 'DevOps Engineer',
+    experience: 8,
+    skills: ['AWS', 'Docker', 'Kubernetes'],
+    location: 'Toronto, Canada',
+    createdAt: new Date('2024-02-10'),
+    updatedAt: new Date('2024-03-17')
+  },
+  {
+    id: '6',
+    name: 'Lisa Brown',
+    email: 'lisa.b@example.com',
+    phone: '+1 (555) 678-9012',
+    status: 'active',
+    role: 'Mobile Developer',
+    experience: 3,
+    skills: ['React Native', 'iOS', 'Android'],
+    location: 'Austin, USA',
+    createdAt: new Date('2024-02-15'),
+    updatedAt: new Date('2024-03-18')
+  },
+  {
+    id: '7',
+    name: 'James Wilson',
+    email: 'james.w@example.com',
+    phone: '+1 (555) 789-0123',
+    status: 'active',
+    role: 'Data Scientist',
+    experience: 5,
+    skills: ['Python', 'TensorFlow', 'SQL'],
+    location: 'Boston, USA',
+    createdAt: new Date('2024-02-20'),
+    updatedAt: new Date('2024-03-19')
+  },
+  {
+    id: '8',
+    name: 'Ana Martinez',
+    email: 'ana.m@example.com',
+    phone: '+1 (555) 890-1234',
+    status: 'pending',
+    role: 'Frontend Developer',
+    experience: 2,
+    skills: ['Vue.js', 'JavaScript', 'CSS'],
+    location: 'Miami, USA',
+    createdAt: new Date('2024-02-25'),
+    updatedAt: new Date('2024-03-20')
+  },
+  {
+    id: '9',
+    name: 'Robert Taylor',
+    email: 'robert.t@example.com',
+    phone: '+1 (555) 901-2345',
+    status: 'active',
+    role: 'Security Engineer',
+    experience: 9,
+    skills: ['Cybersecurity', 'Python', 'Network Security'],
+    location: 'Chicago, USA',
+    createdAt: new Date('2024-03-01'),
+    updatedAt: new Date('2024-03-21')
+  },
+  {
+    id: '10',
+    name: 'Emily Davis',
+    email: 'emily.d@example.com',
+    phone: '+1 (555) 012-3456',
+    status: 'active',
+    role: 'Product Manager',
+    experience: 6,
+    skills: ['Agile', 'Scrum', 'Product Strategy'],
+    location: 'Denver, USA',
+    createdAt: new Date('2024-03-05'),
+    updatedAt: new Date('2024-03-22')
+  },
+  {
+    id: '11',
+    name: 'Thomas Anderson',
+    email: 't.anderson@example.com',
+    phone: '+1 (555) 123-4567',
+    status: 'active',
+    role: 'Backend Developer',
+    experience: 4,
+    skills: ['Java', 'Spring Boot', 'MySQL'],
+    location: 'Portland, USA',
+    createdAt: new Date('2024-03-06'),
+    updatedAt: new Date('2024-03-23')
+  },
+  {
+    id: '12',
+    name: 'Sophie Martin',
+    email: 'sophie.m@example.com',
+    phone: '+1 (555) 234-5678',
+    status: 'inactive',
+    role: 'QA Engineer',
+    experience: 3,
+    skills: ['Selenium', 'Jest', 'Cypress'],
+    location: 'Paris, France',
+    createdAt: new Date('2024-03-07'),
+    updatedAt: new Date('2024-03-24')
+  },
+  {
+    id: '13',
+    name: 'Daniel Lee',
+    email: 'daniel.l@example.com',
+    phone: '+1 (555) 345-6789',
+    status: 'active',
+    role: 'Systems Architect',
+    experience: 10,
+    skills: ['System Design', 'Cloud Architecture', 'AWS'],
+    location: 'Singapore',
+    createdAt: new Date('2024-03-08'),
+    updatedAt: new Date('2024-03-25')
+  },
+  {
+    id: '14',
+    name: 'Rachel Green',
+    email: 'rachel.g@example.com',
+    phone: '+1 (555) 456-7890',
+    status: 'pending',
+    role: 'Frontend Developer',
+    experience: 2,
+    skills: ['React', 'JavaScript', 'HTML/CSS'],
+    location: 'Vancouver, Canada',
+    createdAt: new Date('2024-03-09'),
+    updatedAt: new Date('2024-03-26')
+  },
+  {
+    id: '15',
+    name: 'Kevin Patel',
+    email: 'kevin.p@example.com',
+    phone: '+1 (555) 567-8901',
+    status: 'active',
+    role: 'Mobile Developer',
+    experience: 5,
+    skills: ['Swift', 'iOS', 'Flutter'],
+    location: 'Mumbai, India',
+    createdAt: new Date('2024-03-10'),
+    updatedAt: new Date('2024-03-27')
+  },
+  {
+    id: '16',
+    name: 'Maria Garcia',
+    email: 'maria.g@example.com',
+    phone: '+1 (555) 678-9012',
+    status: 'active',
+    role: 'Data Engineer',
+    experience: 6,
+    skills: ['Python', 'Apache Spark', 'Hadoop'],
+    location: 'Madrid, Spain',
+    createdAt: new Date('2024-03-11'),
+    updatedAt: new Date('2024-03-28')
+  },
+  {
+    id: '17',
+    name: 'William Turner',
+    email: 'william.t@example.com',
+    phone: '+1 (555) 789-0123',
+    status: 'active',
+    role: 'DevOps Engineer',
+    experience: 7,
+    skills: ['Jenkins', 'Terraform', 'Azure'],
+    location: 'Sydney, Australia',
+    createdAt: new Date('2024-03-12'),
+    updatedAt: new Date('2024-03-29')
+  },
+  {
+    id: '18',
+    name: 'Nina Petrova',
+    email: 'nina.p@example.com',
+    phone: '+1 (555) 890-1234',
+    status: 'active',
+    role: 'Backend Developer',
+    experience: 4,
+    skills: ['Python', 'Django', 'PostgreSQL'],
+    location: 'Berlin, Germany',
+    createdAt: new Date('2024-03-13'),
+    updatedAt: new Date('2024-03-30')
+  },
+  {
+    id: '19',
+    name: 'Alex Wong',
+    email: 'alex.w@example.com',
+    phone: '+1 (555) 901-2345',
+    status: 'pending',
+    role: 'Full Stack Developer',
+    experience: 3,
+    skills: ['Angular', 'Node.js', 'MongoDB'],
+    location: 'Hong Kong',
+    createdAt: new Date('2024-03-14'),
+    updatedAt: new Date('2024-03-31')
+  },
+  {
+    id: '20',
+    name: 'Isabella Silva',
+    email: 'isabella.s@example.com',
+    phone: '+1 (555) 012-3456',
+    status: 'active',
+    role: 'UI Designer',
+    experience: 5,
+    skills: ['UI Design', 'Figma', 'Prototyping'],
+    location: 'São Paulo, Brazil',
+    createdAt: new Date('2024-03-15'),
+    updatedAt: new Date('2024-04-01')
+  }
+];
+
+export function getCandidates(): Promise<Candidate[]> {
+  return Promise.resolve(dummyCandidates);
+}
+
+export function getCandidateById(id: string): Promise<Candidate | undefined> {
+  return Promise.resolve(dummyCandidates.find(candidate => candidate.id === id));
+} 

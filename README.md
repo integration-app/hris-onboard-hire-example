@@ -56,8 +56,7 @@ yarn dev
 ## Project Structure
 
 - `/src/app` - Next.js app router pages and API routes
-  - `/users` - Example implementation of external data import
-  - `/api` - Backend API routes for users and integration token management
+  - `/api` - Backend API routes for integration token management
 - `/src/components` - Reusable React components
 - `/src/lib` - Utility functions and helpers
 - `/src/models` - Data models and types
@@ -73,15 +72,13 @@ The template implements a simple authentication mechanism using a randomly gener
 - Generate integration tokens for external app connections
 - Associate imported data with specific customers
 
-### Users Example
+### Candidates
 
-The template includes a complete example of importing and managing users from an external application:
+The template includes a complete example of managing candidates:
 
-- User data model and TypeScript types
-- API routes for user import and retrieval
-- React components for displaying user data
-- Integration with SWR for efficient data fetching
-- Example of using the Integration.app client for data import
+- Candidate data model and TypeScript types
+- API routes for candidate management
+- React components for displaying candidate data
 
 ## Available Scripts
 

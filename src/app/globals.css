@@ -43,3 +43,8 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   @apply bg-background text-foreground;
 }
+@layer iap_reset, iap_base, iap_tokens, iap_recipes, iap_utilities;
+
+@layer iap_reset {
+  @tailwind base;
+}
