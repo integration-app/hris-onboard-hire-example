@@ -1,4 +1,4 @@
-# Integration Use Case Template
+# HRIS Onboard Candidate example
 
 This is a template for an application showcasing integration capabilities using [Integration.app](https://integration.app). The app is built with Next.js and demonstrates how to implement user authentication and integration token generation.
 
@@ -62,23 +62,6 @@ yarn dev
 - `/src/models` - Data models and types
 - `/public` - Static assets
 
-## Template Features
-
-### Authentication
-
-The template implements a simple authentication mechanism using a randomly generated UUID as the customer ID. This simulates a real-world scenario where your application would have proper user authentication. The customer ID is used to:
-
-- Identify the user/customer in the integration platform
-- Generate integration tokens for external app connections
-- Associate imported data with specific customers
-
-### Candidates
-
-The template includes a complete example of managing candidates:
-
-- Candidate data model and TypeScript types
-- API routes for candidate management
-- React components for displaying candidate data
 
 ## Available Scripts
 
