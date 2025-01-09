@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useMemo } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Candidate } from '@/types/candidate';
@@ -9,8 +9,9 @@ import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Search, Loader2 } from 'lucide-react';
 import { cn } from "@/lib/utils";
-import { DataInput, DropdownPortalBoundary } from '@integration-app/react';
+import { DataInput, DropdownPortalBoundary, useIntegrationApp } from '@integration-app/react';
 import debounce from 'lodash/debounce';
+import { useToast } from "@/components/ui/use-toast";
 
 interface OnboardingModalProps {
   isOpen: boolean;
@@ -19,6 +20,7 @@ interface OnboardingModalProps {
 }
 
 export function OnboardingModal({ isOpen, onClose, candidate }: OnboardingModalProps) {
+  const { toast } = useToast();
   const [step, setStep] = useState<'template' | 'form'>('template');
   const [selectedTemplateId, setSelectedTemplateId] = useState<string>('');
   const [searchQuery, setSearchQuery] = useState('');
@@ -27,10 +29,19 @@ export function OnboardingModal({ isOpen, onClose, candidate }: OnboardingModalP
   const [isLoadingSchema, setIsLoadingSchema] = useState(false);
 
   const { templates, isLoading, error, getTemplateSchema } = useOnboardingTemplates();
-  const selectedTemplate = templates.find(t => t.id === selectedTemplateId);
-
-  const filteredTemplates = templates.filter(template => 
-    template.name.toLowerCase().includes(searchQuery.toLowerCase())
+  const integrationApp = useIntegrationApp();
+  
+  // Move the filtering logic after all hooks are called
+  const filteredTemplates = useMemo(() => 
+    templates.filter(template => 
+      template.name.toLowerCase().includes(searchQuery.toLowerCase())
+    ),
+    [templates, searchQuery]
+  );
+  
+  const selectedTemplate = useMemo(() => 
+    templates.find(t => t.id === selectedTemplateId),
+    [templates, selectedTemplateId]
   );
 
   const handleTemplateSelect = async (templateId: string) => {
@@ -72,13 +83,28 @@ export function OnboardingModal({ isOpen, onClose, candidate }: OnboardingModalP
         formData,
       });
       
+      const result = await integrationApp
+        .connection('adp-workforce')
+        .action('onboard-hire')
+        .run({
+          data: formData,
+          onboardingTemplate: selectedTemplate.id
+        });
+      
+      console.log('Onboarding result:', result);
+
       onClose();
       setStep('template');
       setSelectedTemplateId('');
       setFormData({});
       setSearchQuery('');
-    } catch (error) {
+    } catch (error: any) {
       console.error('Failed to start onboarding:', error);
+      toast({
+        variant: "destructive",
+        title: "Onboarding Failed",
+        description: error.message || "Failed to start onboarding process. Please try again.",
+      });
     }
   };
 
@@ -95,7 +121,7 @@ export function OnboardingModal({ isOpen, onClose, candidate }: OnboardingModalP
 
   return (
     <Dialog open={isOpen} onOpenChange={handleClose} >
-      <DialogContent className="sm:max-w-[800px] max-h-[90vh] overflow-y-auto" data-dropdown-portal-boundary="onboarding-modal-form">
+      <DialogContent className="sm:max-w-[800px] max-h-[90vh] overflow-y-auto flex flex-col" data-dropdown-portal-boundary="onboarding-modal-form">
         <DialogHeader className="pb-4 border-b">
           <DialogTitle>
             {step === 'template' ? 'Select Onboarding Template' : (
@@ -109,7 +135,7 @@ export function OnboardingModal({ isOpen, onClose, candidate }: OnboardingModalP
           </DialogTitle>
         </DialogHeader>
 
-        <div className="py-4">
+        <div className="py-4 flex-1 overflow-y-auto">
           {step === 'template' ? (
             <div className="space-y-4">
               <div className="relative">
@@ -183,16 +209,6 @@ export function OnboardingModal({ isOpen, onClose, candidate }: OnboardingModalP
                   This may take a few seconds...
                 </p>
               </div>
-              <Button 
-                variant="outline" 
-                onClick={() => {
-                  setStep('template');
-                  setIsLoadingSchema(false);
-                }}
-                className="mt-4"
-              >
-                Cancel
-              </Button>
             </div>
           ) : (
             <div className="space-y-6">
@@ -206,17 +222,26 @@ export function OnboardingModal({ isOpen, onClose, candidate }: OnboardingModalP
                   /></DropdownPortalBoundary>
                 )}
               </div>
-              <div className="flex justify-end space-x-2 pt-4 border-t">
-                <Button variant="outline" onClick={() => setStep('template')}>
-                  Back
-                </Button>
-                <Button onClick={handleOnboard}>
-                  Onboard
-                </Button>
-              </div>
             </div>
           )}
         </div>
+
+        {step === 'form' && !isLoadingSchema && (
+          <div className="flex justify-end space-x-2 pt-4 border-t">
+            <Button 
+              variant="outline" 
+              onClick={() => setStep('template')}
+            >
+              Back
+            </Button>
+            <Button 
+              onClick={handleOnboard}
+              disabled={!selectedTemplate || !formData || Object.keys(formData).length === 0}
+            >
+              Onboard
+            </Button>
+          </div>
+        )}
       </DialogContent>
     </Dialog>
   );
